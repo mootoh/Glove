@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.Menu;
 
 import com.parse.Parse;
+import com.parse.ParseAnalytics;
 import com.parse.ParseInstallation;
 import com.parse.PushService;
 
@@ -26,6 +27,7 @@ public class MainActivity extends Activity {
         Parse.initialize(this, "", "");
         PushService.setDefaultPushCallback(this, MainActivity.class);
         ParseInstallation.getCurrentInstallation().saveInBackground();
+        ParseAnalytics.trackAppOpened(getIntent());
 
         String message = "normal";
         Intent intent = getIntent();
