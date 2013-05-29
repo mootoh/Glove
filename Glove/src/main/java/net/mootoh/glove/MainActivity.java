@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.app.Activity;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 import android.view.Menu;
 import android.widget.Toast;
 
@@ -28,34 +29,25 @@ public class MainActivity extends Activity {
         } else {
             showNotification();
         }
-
-        Toast toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
-        toast.show();
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     private void showNotification() {
+        Log.d(getClass().getSimpleName(), "notification");
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.ic_launcher)
                 .setContentTitle("Yay!")
                 .setContentText("Hello World")
 //                .addAction(R.drawable.ic_launcher, "Paste", null)
                 ;
-        Intent resultIntent = new Intent(this, CopyActivity.class);
+        Intent resultIntent = new Intent(this, NotifiedReceiver.class);
         resultIntent.putExtra("thrown", "yay");
 
-//        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-//        stackBuilder.addParentStack(MainActivity.class);
-//        stackBuilder.addNextIntent(resultIntent);
-//        PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        PendingIntent resultPendingIntent = PendingIntent.getActivity(getApplicationContext(), 1, resultIntent, Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent resultPendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         builder.setContentIntent(resultPendingIntent);
         NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         manager.notify(1, builder.build());
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
