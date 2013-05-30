@@ -21,11 +21,11 @@ public class ParseNotificationReceiver extends BroadcastReceiver {
         Log.d(getClass().getSimpleName(), "got notification from Parse: Data=" + intent.getExtras().getString("com.parse.Data"));
         try {
             JSONObject json = new JSONObject(intent.getExtras().getString("com.parse.Data"));
-            final String title = json.getString("title");
+            final String alert = json.getString("alert");
 
             // Store the passed object into clipboard.
             ClipboardManager cm = (ClipboardManager)context.getSystemService(Context.CLIPBOARD_SERVICE);
-            ClipData cd = ClipData.newPlainText("thrown", title);
+            ClipData cd = ClipData.newPlainText("thrown", alert);
             cm.setPrimaryClip(cd);
         } catch (JSONException e) {
             Log.d(getClass().getSimpleName(), "JSONException: " + e.getMessage());
