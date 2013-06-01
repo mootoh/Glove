@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "Glove": {
+            "applicationId": "__PARSE_APP_ID",
+            "masterKey": "__PARSE_MASTER_KEY"
+        }, 
+        "_default": {
+            "link": "Glove"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.2.7"
+    }
+}
