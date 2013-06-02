@@ -10,3 +10,9 @@ Ingredients
 - Alfred 2 workflow that wraps the Mac command line app above.
 - Parse.com CloudCode server side code, which sends push notifications to mobile device.
 - Android app who receives the push notification, and store it in the clipboard automatically.
+
+Usage
+-----
+
+- Create an app on [Parse.com](http://parse.com) and places its credentials in parse.conf, by replacing parse.conf-template.
+- More to come
