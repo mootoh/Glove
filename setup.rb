@@ -16,7 +16,7 @@ client_key = conf.shift
 master_key = conf.shift
 
 def replace_android(app_id, client_key)
-    string_xml = open('Glove/src/main/res/values/strings.xml', 'r')
+    string_xml = open('GloveAndroid/GloveAndroid/src/main/res/values/strings.xml', 'r')
     replaced = string_xml.collect do |line|
         if line =~ /__PARSE_APP_ID/
             line.sub(/__PARSE_APP_ID/, app_id) 
@@ -27,7 +27,7 @@ def replace_android(app_id, client_key)
         end
     end
 
-    open('Glove/src/main/res/values/strings.xml', 'w').puts replaced
+    open('GloveAndroid/GloveAndroid/src/main/res/values/strings.xml', 'w').puts replaced
 end
 
 def replace_mac(app_id, api_key)
